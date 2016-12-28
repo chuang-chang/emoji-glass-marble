@@ -1,0 +1,14 @@
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <p>提示</p>
+  </ion-header-bar>
+  <ion-content class="has-header" overflow-scroll="true">
+	<div class="col-80 col-offset-10 egm-emoji">
+		<ul>
+			<li ng-repeat="emo in vm.vars.loademoji">
+				<img ng-src="{{emo}}">
+			</li>
+		</ul>
+	</div>
+  </ion-content>
+</ion-pane>
