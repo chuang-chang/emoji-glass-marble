@@ -1,25 +1,20 @@
-Ionic App Base
+Emoji Glass Marble(emoji玻璃球)
 =====================
 
-A starting project for Ionic that optionally supports using custom SCSS.
+一个简单的玻璃球小游戏
 
-## Using this project
+## 概述
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+emoji玻璃球  思路来自于80 90后小时候玩的游戏
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+两方对战，划定圆圈战区  两个玻璃球互击，最终留在战区内的玻璃球获胜
 
-```bash
-$ npm install -g ionic
-```
+emoji表情：stars face animals ocean 等等为球的角色
 
-Then run: 
+sun:以及一些🈲 等特殊emoji表情为上帝之球
 
-```bash
-$ ionic start myProject tabs
-```
+两方玩家各有四个上帝之球，分别有不一样的技能，上帝之球飞出则影响对方技能释放，比如迟缓，吸引，融化，等等等等
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
 
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+## 基于Ionic实现
+更多关于IONIC [Ionic Forum](http://forum.ionicframework.com/).
