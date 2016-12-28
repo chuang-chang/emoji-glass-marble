@@ -8,7 +8,8 @@
     border-radius: 50%;
     box-shadow: 2px 5px 12px #77ddff;
 }
-.egm-emoji ul li::before{
+.egm-emoji ul li:before{
+	position:absolute;
 	width: 100%;   
     height: 100%;   
     background: inherit;
@@ -22,4 +23,5 @@
 }
 .egm-emoji ul li>img{
 	width:70%;
+	margin:7px;
 }
