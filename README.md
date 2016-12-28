@@ -17,4 +17,11 @@ sun:以及一些🈲 等特殊emoji表情为上帝之球
 
 
 ## 基于Ionic实现
-更多关于IONIC [Ionic Forum](http://forum.ionicframework.com/).
+
+ionic教程 [Ionic](http://www.runoob.com/ionic/ionic-install.html).
+
+ngCordova教程 [ngCordova](http://ngcordova.com/docs/plugins/).
+
+关于Ionic开发的一些总结：
+__[blog](http://blog.chqiangs.com).__
+
