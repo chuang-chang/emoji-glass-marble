@@ -1,14 +1,36 @@
-<ion-pane>
-  <ion-header-bar class="bar-stable">
-    <p>提示</p>
-  </ion-header-bar>
-  <ion-content class="has-header" overflow-scroll="true">
-	<div class="col-80 col-offset-10 egm-emoji">
-		<ul>
-			<li ng-repeat="emo in vm.vars.loademoji">
-				<img ng-src="{{emo}}">
-			</li>
-		</ul>
+<ion-pane class="welcom-page">
+  <ion-content overflow-scroll="true">
+  	<h1 class="text-center text-ivory welcom-h1">Emoji玻璃球</h1>
+	<div class="col-80 col-offset-10 egm-emoji welcom-center">
+		<div class="egm-slide">
+			<div class="egm-slide-in slide-{{vm.vars.slidePage}}" on-swipe-left="vm.fn.swipeLeft()"  on-swipe-right="vm.fn.swipeRight()">
+				<ul class="clearfix">
+					<li ng-repeat="emo in vm.vars.loademoji">
+						<img ng-src="{{emo}}">
+						<i></i>
+					</li>
+				</ul>
+				<div class="intro">
+					<p>
+						你会随机拥有<strong class="text-danger font-24">1</strong>枚玻璃球作为<span class="text-danger">作战球</span>，<span class="text-warning">普通emoji表情</span>、<span class="text-royal">十二生肖</span>、<span class="text-calm">十二星座</span>，它们可能各自带有不同的属性：<span class="text-success">速度</span>、<span class="text-success">重量</span>、<span class="text-success">增减益效果</span>。
+					</p>
+				</div>
+				<div class="intro">
+					<p>
+						系统会随机打出<span class="text-calm">上帝之球</span>，打出后，双方都受影响；你会随机拥有<strong class="text-danger font-24">3</strong>枚<span class="text-danger">道具球</span>,使用后，<span class="text-success">增益</span>效果会主动赋予<strong>本人作战球</strong>、<span class="text-success">减益</span>效果赋予<strong>敌方作战球</strong>。
+					</p>
+				</div>
+			</div>
+			<div class="egm-slide-pointer">
+				<ul class="clearfix">
+					<li><div class="sp {{vm.vars.slidePage==0?'active':''}}"></div></li>
+					<li><div class="sp {{vm.vars.slidePage==1?'active':''}}"></div></li>
+					<li><div class="sp {{vm.vars.slidePage==2?'active':''}}"></div></li>
+				</ul>
+			</div>
+		</div>
 	</div>
+	<button class="button button-outline button-balanced welcom-login button-large" on-tap="vm.fn.wechatLogin()"><i class="icons wechat"></i>微信登录</button>
   </ion-content>
+  <div class="backpage"></div>
 </ion-pane>
