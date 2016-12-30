@@ -2,7 +2,7 @@
  * reset
  */
 .bar.bar-stable{
-	background-color: transparent;
+	background-color: rgba(255,255,255,0.8);
 }
 .font-24{
 	font-size: 24px;
@@ -76,6 +76,7 @@ ion-content{
     -moz-transform: translate(0,50%);
     -ms-transform: translate(0,50%);
     padding: 5px;
+    border-radius: 10px;
     box-shadow: 0px 1px 22px #000;
 }
 .welcom-center .egm-slide{
@@ -136,6 +137,10 @@ ion-content{
     font-size: 1.5em;
     line-height: 1.5em;
 }
+.egm-emoji .egm-slide-in ul{
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 10px;
+}
 .welcom-page>.backpage{
 	position: absolute;
 	top:0;
@@ -144,15 +149,9 @@ ion-content{
 	bottom:0;
 	width:100%;
 	height:100%;
-	background-image: url("../imgs/styles/welcom-back.jpg");
+	background-image: url("../imgs/styles/welcom-back.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-	filter: url(blur.svg#blur);
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
-    -ms-filter: blur(10px);
-    filter: blur(10px);
-    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
     z-index: 0;
 }
 .welcom-login {
@@ -161,6 +160,26 @@ ion-content{
     bottom: 20%;
     left: 50%;
     margin-left: -40%;
+}
+.choicePage{
+    position:absolute;
+    left:10px;
+    right:10px;
+    top:10px;
+    bottom:10px;
+    z-index: 10;
+    background-color: rgba(255,255,255,0.7);
+}
+.choice-page-back{
+    position: fixed;
+    z-index: 0;
+    background-image: url("../imgs/styles/index-back.png");
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 /***********/
 /**
@@ -188,12 +207,12 @@ ion-content{
 }
 .egm-emoji .egm-slide-in ul li>i{
     position: absolute;
-    width: 75%;
-    height: 75%;
+    width: 65%;
+    height: 65%;
     top: 6px;
     left: 3px;
-    box-shadow: 3px 3px 2px #77ddff;
-    background-color: rgba(152,255,255,0.2);
+    box-shadow: 0px -4px 10px #77ddff inset;
+    background-color: rgba(152,255,255,0.1);
     border-radius: 50%;
     filter: url(blur.svg#blur);
     -webkit-filter: blur(5px);
