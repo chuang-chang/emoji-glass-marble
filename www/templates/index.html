@@ -4,9 +4,28 @@
     <p ng-if="vm.vars.tooltip">提示</p>
   </ion-header-bar>
   <ion-content class="has-header" overflow-scroll="true">
-	<div class="choicePage">
-		
-	</div>
+	<div class="choicePage" ng-class="vm.vars.start?'startPage':''">
+    <div class="notStart" ng-class="vm.vars.start?'scaleIn':''">
+		  <h2 class="text-center welcom-h1">尊敬的<strong class="text-danger">9527-</strong>您好：</h2>
+      <div class="jitan">
+        <div class="marble choiced" style="margin:4px">
+          <img ng-src="{{vm.vars.fightMarble.urls.group[0].url}}">
+          <i></i>
+        </div>
+      </div>
+      
+      <p class="text-center">您的作战球是: <b class="text-success">{{vm.fn.getFightballType().name}}</b></p>
+      <p class="text-center"><button class="button button-royal button-sm" on-tap="vm.fn.changeMarble()">换一个</button></p>
+      <p class="text-center"><button class="button button-block button-balanced button-large" on-tap="vm.fn.startGame()">普通玩法</button></p>
+      <p class="text-center"><button class="button button-block button-positive button-large" on-tap="vm.fn.startGame()">更多玩法</button></p>
+	  </div>
+    <div class="startPageInner">
+       <div class="startGame" ng-click="vm.fn.hit()" id="startGame" ng-show="vm.vars.start">
+      
+      </div>
+    </div>
+   
+  </div>
   </ion-content>
   <div class="choice-page-back"></div>
 </ion-pane>
