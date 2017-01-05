@@ -268,15 +268,120 @@ ion-content{
 }
 .startGame{
     position: absolute;
-    top: 100px;
+    top: 10%;
     left: 5px;
     z-index: 150;
     border-width: 5px;
     right: 5px;
     background-color: rgba(243,183,98,0.4);
-    bottom: 200px;
+    bottom: 20%;
     border-color: #C6AA6C;
     border-radius: 20px 10px 20px 10px;
     border-style: double;
 }
+
+.operation {
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    bottom: 0;
+    height: 20%;
+}
+.operation .left {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: rgba(114,218,244,0.8);
+    box-shadow: 1px 1px 20px #41A9D8 inset;
+    margin-top: 15px;
+    position: relative;
+    border: 3px solid #41A9C4;
+}
+.operation .left .pointer {
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #41A9C4;
+    position: absolute;
+    border: 5px double #3E7288;
+    margin-left: -25px;
+    margin-top: -25px;
+    box-shadow: 1px 1px 20px #3e7288 inset;
+}
+.operation .right{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(155,197,253,0.8);
+    box-shadow: 1px 1px 20px #88ADEA inset;
+    margin-top: 50px;
+    margin-right: 5px;
+    padding:3px;
+    float: right;
+    position: relative;
+    border: 3px solid #88ADEA;
+}
+.operation .right .pointer{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px double #3F75BF;
+    box-shadow: 1px 1px 20px #3F75BF inset;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.operation .right .pointer.power-1{
+    box-shadow: 1px 1px 25px #3F75BF inset;
+}
+.operation .right .pointer.power-2{
+    box-shadow: 1px 1px 30px #3F75BF inset;
+}
+.operation .right .pointer.power-3{
+    box-shadow: 1px 1px 35px #3F75BF inset; 
+}
+.operation .right .pointer.power-4{
+    box-shadow: 1px 1px 40px #3F75BF inset;
+}
+.operation .right .pointer.power-5{
+    box-shadow: 1px 1px 45px #3F75BF inset;
+}
+.operation .right .pointer.power-6{
+    box-shadow: 1px 1px 50px #3F75BF inset;
+}
+.operation .right .pointer.power-7{
+    box-shadow: 1px 1px 55px #3F75BF inset;
+}
+.operation .right .pointer.power-8{
+    box-shadow: 1px 1px 60px #3F75BF inset; 
+}
+.operation .right .pointer.power-9{
+    box-shadow: 1px 1px 65px #3F75BF inset;
+}
+.operation .right .pointer.power-10{
+    box-shadow: 1px 1px 70px #3F75BF inset; 
+}
+.myBall:before{
+    content: '我';
+    display: inline-block;
+    position: absolute;
+    width: 40px;
+    height: 27px;
+    border: 1px solid #666;
+    text-align: center;
+    font-size: 100%;
+    border-radius: 7px;
+    line-height: 24px;
+    top: -24px;
+    background-color: #50B9EB;
+    color: #000;
+    left: 2px;
+}
+.myBall:after{
+    clear: both;
 }

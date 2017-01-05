@@ -19,9 +19,21 @@
       <p class="text-center"><button class="button button-block button-balanced button-large" on-tap="vm.fn.startGame()">普通玩法</button></p>
       <p class="text-center"><button class="button button-block button-positive button-large" on-tap="vm.fn.startGame()">更多玩法</button></p>
 	  </div>
-    <div class="startPageInner">
-       <div class="startGame" ng-click="vm.fn.hit()" id="startGame" ng-show="vm.vars.start">
+    <div class="startPageInner" ng-show="vm.vars.start" on-touch="vm.fn.getPOS($event)">
+       <div class="startGame" ng-click="vm.fn.hit()" id="startGame">
       
+      </div>
+      <div class="operation">
+        <div class="right" on-touch="vm.fn.startTimer()" on-release="vm.fn.endTimer()">
+            <div class="pointer power-{{vm.vars.powerVal}}">
+              
+            </div>
+        </div>
+        <div class="left">
+            <div class="pointer" on-drag="vm.fn.adjustPosition($event)" on-touch="vm.fn.readyOrigin($event)" ng-style="{'left':vm.vars.dragX+'px','top':vm.vars.dragY+'px'}">
+              
+            </div>
+        </div>
       </div>
     </div>
    

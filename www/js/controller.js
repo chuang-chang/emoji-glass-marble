@@ -131,7 +131,7 @@ angular.module('starter.controllers', [])
 	        var self=this;
 	        self.createBalls();
 	        // self.hitBalls();
-	        self.timer=setInterval(function (){self.hitBalls()}, 30)
+	        // self.timer=setInterval(function (){self.hitBalls()}, 50)
 	    },
 	    createBalls:function () {
 	        var self=this, 
@@ -209,17 +209,17 @@ angular.module('starter.controllers', [])
 	            ball.style.left=L;
 	            ball.vx*=BC;
 	        }
-	       	if (ball.offsetLeft + ball.diameter > R) {
-	            ball.style.left=(R-ball.diameter)+'px';
-	            ball.vx*=BC;
-	        }
-	       	if (ball.offsetTop < T) {
+	        if (ball.offsetTop < T) {
 	            ball.style.top=T;
 	            ball.vy*=BC;
 	        }
-	        if (ball.offsetTop + ball.diameter > B) {
+	        if (ball.offsetLeft > (R-ball.diameter)) {
+	            ball.style.left=(R-ball.diameter)+'px';
+	            ball.vx = ball.vx/BC;
+	        }
+	        if ((ball.offsetTop) > (B-ball.diameter)) {
 	            ball.style.top=(B-ball.diameter)+'px';
-	            ball.vy*=BC;
+	            ball.vy= ball.vy/BC;
 	        }
 	    }
 	}
@@ -303,6 +303,17 @@ angular.module('starter.controllers', [])
 		fightMarble:JSON.parse(localStorage.getItem("fightMarble")),
 		propersMarbles:dh.getRandom("propers"),
 	}
+	var Rotate = function(Source,Angle)//Angle为正时逆时针转动, 单位为弧度
+	{
+	    var A,R;
+	    A = Math.atan2(Source.Y,Source.X)//atan2自带坐标系识别, 注意X,Y的顺序
+	    A += Angle//旋转
+	    R = Math.sqrt(Source.X * Source.X + Source.Y * Source.Y)//半径
+	    return {
+	        X : Math.cos(A) * R,
+	        Y : Math.sin(A) * R
+	    }
+	}
 	vm.fn = {
 		init:function(){
 			console.log(vm.vars);
@@ -335,7 +346,7 @@ angular.module('starter.controllers', [])
 		startGame:function(){
 			vm.vars.start = true;
 			$timeout(function(){
-				vm.vars.balls = new Balls('startGame',{ballsnum:10, spring:0.3, bounce:1, gravity:0.05});
+				vm.vars.balls = new Balls('startGame',{ballsnum:10, spring:0.1, bounce:-0.9, gravity:0.05});
         		vm.vars.balls.initialize();
 			},100);
 			
@@ -343,11 +354,62 @@ angular.module('starter.controllers', [])
 		hit:function(){
 			vm.vars.startFit = !vm.vars.startFit;
 			if(vm.vars.startFit){
-				vm.vars.balls.timer=setInterval(function (){vm.vars.balls.hitBalls()}, 30)
+				vm.vars.balls.timer=setInterval(function (){vm.vars.balls.hitBalls()}, 40)
 			}else{
 				clearTimeout(vm.vars.balls.timer);
 			}
 			
+		},
+		readyOrigin:function(e){
+			vm.vars.dragOriginX = e.target.offsetLeft;
+			vm.vars.dragOriginY = e.target.offsetTop;
+		},
+		/**
+		 * 调整角度
+		 * @param  {[type]} e [description]
+		 * @return {[type]}   [description]
+		 */
+		adjustPosition:function(e){
+			console.log(e);
+			//获取横坐标的位置
+			vm.vars.dragX = vm.vars.dragOriginX+e.gesture.deltaX+15;
+			//获取角度
+			var angleOfLine = Math.atan2(e.target.offsetTop, vm.vars.dragX) * 180 / Math.PI;
+			
+			vm.vars.dragY = Rotate({X:vm.vars.dragX,Y:32},Math.PI/180*angleOfLine).Y;
+
+			// 
+			// if(vm.vars.dragX>100)vm.vars.dragX=100;
+			// if(vm.vars.dragX<0)vm.vars.dragX=0;
+			
+		},
+		/**
+		 * 按住开始计时
+		 * @return {[type]} [description]
+		 */
+		startTimer:function(){
+			vm.vars.powerVal = 0;
+			function startT(){
+				vm.vars.powerTimer = $timeout(function(){
+					if(vm.vars.powerVal<10){
+						vm.vars.powerVal++;
+					}
+					$timeout.cancel(vm.vars.powerTimer);
+					startT();
+				},100);
+			}
+			startT();
+		},
+		/**
+		 * 松开
+		 * @return {[type]} [description]
+		 */
+		endTimer:function(){
+			vm.vars.powerVal = 0;
+			$timeout.cancel(vm.vars.powerTimer);
+		},
+		getPOS:function(e){
+			console.log(e);
 		}
 	}
 
