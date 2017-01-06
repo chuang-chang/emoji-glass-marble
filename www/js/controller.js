@@ -348,6 +348,12 @@ angular.module('starter.controllers', [])
 			$timeout(function(){
 				vm.vars.balls = new Balls('startGame',{ballsnum:10, spring:0.1, bounce:-0.9, gravity:0.05});
         		vm.vars.balls.initialize();
+        		vm.vars.handlebar = document.getElementById("operation");
+
+        		vm.vars.handlebar.addEventListener('touchstart', vm.fn.onTouchStart, false);
+			    vm.vars.handlebar.addEventListener('touchmove', vm.fn.onTouchMove, false);
+			    vm.vars.handlebar.addEventListener('touchend', vm.fn.onTouchEnd, false);
+
 			},100);
 			
 		},
@@ -363,6 +369,59 @@ angular.module('starter.controllers', [])
 		readyOrigin:function(e){
 			vm.vars.dragOriginX = e.target.offsetLeft;
 			vm.vars.dragOriginY = e.target.offsetTop;
+		},
+		onTouchStart:function(e){
+			console.log(e.touches)
+			if(e.touches.length==1){
+				if(e.target.id=="power"){
+					vm.fn.readyOrigin(e);
+				}
+				if(e.target.id=="position"){
+					return false;
+				}
+			}else if(e.touches.length==2){
+				if(e.target.id=="power"){
+					vm.fn.readyOrigin(e);
+				}
+				if(e.target.id=="position"){
+					vm.fn.startTimer();
+				}
+			}
+		},
+		onTouchMove:function(e){
+			console.log(e.touches)
+			if(e.touches.length==1){
+				if(e.target.id=="power"){
+					return false;
+				}
+				if(e.target.id=="position"){
+					vm.fn.adjustPosition(e);
+				}
+			}else if(e.touches.length==2){
+				if(e.target.id=="power"){
+					return false;
+				}
+				if(e.target.id=="position"){
+					vm.fn.adjustPosition(e);
+				}
+			}
+		},
+		onTouchEnd:function(e){
+			if(e.touches.length==1){
+				if(e.target.id=="power"){
+					return false;
+				}
+				if(e.target.id=="position"){
+					vm.fn.endTimer();
+				}
+			}else if(e.touches.length==2){
+				if(e.target.id=="power"){
+					return false;
+				}
+				if(e.target.id=="position"){
+					vm.fn.endTimer();
+				}
+			}
 		},
 		/**
 		 * 调整角度

@@ -23,14 +23,14 @@
        <div class="startGame" ng-click="vm.fn.hit()" id="startGame">
       
       </div>
-      <div class="operation">
-        <div class="right" on-touch="vm.fn.startTimer()" on-release="vm.fn.endTimer()">
+      <div class="operation" id="operation">
+        <div class="right" id="position" on-touch="vm.fn.startTimer()" on-release="vm.fn.endTimer()">
             <div class="pointer power-{{vm.vars.powerVal}}">
               
             </div>
         </div>
         <div class="left">
-            <div class="pointer" on-drag="vm.fn.adjustPosition($event)" on-touch="vm.fn.readyOrigin($event)" ng-style="{'left':vm.vars.dragX+'px','top':vm.vars.dragY+'px'}">
+            <div class="pointer" id="power" on-drag="vm.fn.adjustPosition($event)" on-touch="vm.fn.readyOrigin($event)" ng-style="{'left':vm.vars.dragX+'px','top':vm.vars.dragY+'px'}">
               
             </div>
         </div>
