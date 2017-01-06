@@ -374,54 +374,59 @@ angular.module('starter.controllers', [])
 			console.log(e.touches)
 			if(e.touches.length==1){
 				if(e.target.id=="power"){
-					vm.fn.readyOrigin(e);
+					vm.fn.readyOrigin(e.touches[0]);
 				}
-				if(e.target.id=="position"){
-					return false;
+				if(e.target.id=="position"||e.target.offsetParent.id=="position"){
+					vm.fn.startTimer();
 				}
 			}else if(e.touches.length==2){
 				if(e.target.id=="power"){
-					vm.fn.readyOrigin(e);
+					vm.fn.readyOrigin(e.touches[0]);
 				}
-				if(e.target.id=="position"){
+				if(e.target.id=="position"||e.target.offsetParent.id=="position"){
 					vm.fn.startTimer();
 				}
 			}
+			scope.$apply();
 		},
 		onTouchMove:function(e){
 			console.log(e.touches)
+			console.log(e.touches.length)
 			if(e.touches.length==1){
+				console.log(e.target.id)
 				if(e.target.id=="power"){
-					return false;
+					vm.fn.adjustPosition(e.touches[0]);
 				}
-				if(e.target.id=="position"){
-					vm.fn.adjustPosition(e);
+				if(e.target.id=="position"||e.target.offsetParent.id=="position"){
+					return false;
 				}
 			}else if(e.touches.length==2){
 				if(e.target.id=="power"){
-					return false;
+					vm.fn.adjustPosition(e.touches[0]);
 				}
-				if(e.target.id=="position"){
-					vm.fn.adjustPosition(e);
+				if(e.target.id=="position"||e.target.offsetParent.id=="position"){
+					return false;			
 				}
 			}
+			scope.$apply();
 		},
 		onTouchEnd:function(e){
 			if(e.touches.length==1){
 				if(e.target.id=="power"){
 					return false;
 				}
-				if(e.target.id=="position"){
+				if(e.target.id=="position"||e.target.offsetParent.id=="position"){
 					vm.fn.endTimer();
 				}
 			}else if(e.touches.length==2){
 				if(e.target.id=="power"){
 					return false;
 				}
-				if(e.target.id=="position"){
+				if(e.target.id=="position"||e.target.offsetParent.id=="position"){
 					vm.fn.endTimer();
 				}
 			}
+			scope.$apply();
 		},
 		/**
 		 * 调整角度
@@ -431,12 +436,19 @@ angular.module('starter.controllers', [])
 		adjustPosition:function(e){
 			console.log(e);
 			//获取横坐标的位置
-			vm.vars.dragX = vm.vars.dragOriginX+e.gesture.deltaX+15;
-			//获取角度
-			var angleOfLine = Math.atan2(e.target.offsetTop, vm.vars.dragX) * 180 / Math.PI;
+			// vm.vars.dragX = vm.vars.dragOriginX+e.gesture.deltaX+15;
+			// //获取角度
+			// var angleOfLine = Math.atan2(e.target.offsetTop, vm.vars.dragX) * 180 / Math.PI;
 			
-			vm.vars.dragY = Rotate({X:vm.vars.dragX,Y:32},Math.PI/180*angleOfLine).Y;
+			// vm.vars.dragY = Rotate({X:vm.vars.dragX,Y:32},Math.PI/180*angleOfLine).Y;
 
+			vm.vars.dragX = e.clientX;
+			vm.vars.dragY = e.clientY-(screen.height -130);
+			scope.$apply();
+			//获取角度
+			var angleOfLine = Math.atan2(e.target.offsetTop, e.clientY) * 180 / Math.PI;
+			
+			// vm.vars.dragY = Rotate({X:vm.vars.dragX,Y:32},Math.PI/180*angleOfLine).Y;
 			// 
 			// if(vm.vars.dragX>100)vm.vars.dragX=100;
 			// if(vm.vars.dragX<0)vm.vars.dragX=0;
